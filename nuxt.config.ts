@@ -7,6 +7,12 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: 'static',
+
+    prerender: {
+      crawlLinks: true,
+      routes: ['/']
+    },
+    
     // Add this configuration
     publicAssets: [{
       baseURL: '/vara-cattum',
