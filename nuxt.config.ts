@@ -12,7 +12,7 @@ export default defineNuxtConfig({
       crawlLinks: true,
       routes: ['/']
     },
-    
+
     // Add this configuration
     publicAssets: [{
       baseURL: '/vara-cattum',
@@ -53,5 +53,10 @@ export default defineNuxtConfig({
         transformAssetUrls,
       },
     },
+    plugins: [ 
+      vuetify({ 
+        autoImport: true 
+      })
+    ],
   },
 })
