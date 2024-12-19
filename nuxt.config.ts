@@ -1,5 +1,6 @@
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
+  ssr: true,
   app: {
     baseURL: '/vara-cattum/',
     buildAssetsDir: '/vara-cattum/_nuxt/' // Add this line
