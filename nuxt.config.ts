@@ -1,12 +1,12 @@
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
 export default defineNuxtConfig({
   app: {
-    baseURL: process.env.BASE_URL || '/', // Adjust dynamically
+    baseURL: process.env.BASE_URL || '/vara-cattum/', // Adjust dynamically
   },
   nitro: {
     preset: 'static',
     output: {
-      publicDir: '.output/public',
+      publicDir: '.output/public/vara-cattum',
     },
     prerender: {
       crawlLinks: true,
@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     },
     publicAssets: [
       {
-        baseURL: process.env.BASE_URL || '/', // Dynamic mapping
+        baseURL: process.env.BASE_URL || '/vara-cattum/', // Dynamic mapping
         dir: 'public',
       },
     ],
