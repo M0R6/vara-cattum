@@ -1,22 +1,23 @@
-import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
 export default defineNuxtConfig({
   app: {
-    baseURL: '/vara-cattum/',
-    buildAssetsDir: '/vara-cattum/_nuxt/' // Add this line
+    baseURL: process.env.BASE_URL || '/', // Adjust dynamically
   },
   nitro: {
     preset: 'static',
-
+    output: {
+      publicDir: '.output/public',
+    },
     prerender: {
       crawlLinks: true,
-      routes: ['/']
+      routes: ['/'],
     },
-
-    // Add this configuration
-    publicAssets: [{
-      baseURL: '/vara-cattum',
-      dir: 'public'
-    }]
+    publicAssets: [
+      {
+        baseURL: process.env.BASE_URL || '/', // Dynamic mapping
+        dir: 'public',
+      },
+    ],
   },
   postcss: {
     plugins: {
@@ -28,20 +29,14 @@ export default defineNuxtConfig({
     '~/assets/css/main.css',
     'vuetify/styles',
   ],
-  compatibilityDate: '2024-04-03',
-  devtools: { enabled: true },
   build: {
     transpile: ['vuetify'],
-  },
-  tailwindcss: {
-    viewer: true
   },
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
-        // @ts-expect-error
-        config.plugins.push(vuetify({ autoImport: true }))
-      })
+        config.plugins.push(vuetify({ autoImport: true }));
+      });
     },
     '@nuxt/fonts',
     '@nuxtjs/tailwindcss',
@@ -52,10 +47,10 @@ export default defineNuxtConfig({
         transformAssetUrls,
       },
     },
-    plugins: [ 
-      vuetify({ 
-        autoImport: true 
-      })
+    plugins: [
+      vuetify({
+        autoImport: true,
+      }),
     ],
   },
-})
+});
