@@ -2,23 +2,26 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
 export default defineNuxtConfig({
   app: {
     baseURL: process.env.BASE_URL || '/vara-cattum/', // Adjust dynamically
+    buildAssetsDir: 'vara-cattum'
+  },
+  experimental: {
+    payloadExtraction: true
   },
   nitro: {
-    preset: 'static',
-    output: {
-      publicDir: '.output/public/vara-cattum',
-    },
+    preset: 'github-pages',
+    serveStatic: true,
     prerender: {
       crawlLinks: true,
       routes: ['/'],
-    },
-    publicAssets: [
-      {
-        baseURL: process.env.BASE_URL || '/vara-cattum/', // Dynamic mapping
-        dir: 'public',
-      },
-    ],
+    }
   },
+  //   publicAssets: [
+  //     {
+  //       baseURL: process.env.BASE_URL || '/vara-cattum/', // Dynamic mapping
+  //       dir: 'public',
+  //     },
+  //   ],
+  // },
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -26,7 +29,7 @@ export default defineNuxtConfig({
     },
   },
   css: [
-    '~/assets/css/main.css',
+    '@/assets/css/main.css',
     'vuetify/styles',
   ],
   build: {
@@ -35,6 +38,7 @@ export default defineNuxtConfig({
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
+        config.plugins = config.plugins || [];
         config.plugins.push(vuetify({ autoImport: true }));
       });
     },

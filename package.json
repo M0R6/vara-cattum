@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "deploy": "npm run generate && gh-pages -d .output/public -r https://github.com/M0R6/vara-cattum.git"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@duskmoon/vue3-typed-js": "^0.0.4",
